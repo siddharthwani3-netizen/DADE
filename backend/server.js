@@ -57,8 +57,15 @@ app.get('*', (req, res) => {
 
 // Connect to MongoDB and start server
 const PORT = process.env.PORT || 5000;
+const MONGODB_URI = process.env.MONGODB_URI;
 
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/dade_platform')
+if (!MONGODB_URI) {
+  console.error('FATAL ERROR: MONGODB_URI is not defined.');
+  console.error('Set MONGODB_URI in Render environment variables or in backend/.env before starting the app.');
+  process.exit(1);
+}
+
+mongoose.connect(MONGODB_URI)
   .then(() => {
     console.log('MongoDB Connected Successfully');
     
@@ -69,7 +76,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/dade_plat
     });
   })
   .catch((error) => {
-    console.error('MongoDB Connection Error:', error);
+    console.error('MongoDB Connection Error:', error.message || error);
     process.exit(1);
   });
 

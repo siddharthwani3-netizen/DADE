@@ -6,7 +6,8 @@
   ],
   "scripts": {
     "start": "node server.js",
-    "dev": "cd backend && nodemon server.js"
+    "dev": "cd backend && nodemon server.js",
+    "postinstall": "cd backend && yarn install"
   },
   "engines": {
     "node": ">=18"
