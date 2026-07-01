@@ -1,0 +1,14 @@
+{
+  "name": "dade-project-root",
+  "private": true,
+  "workspaces": [
+    "backend"
+  ],
+  "scripts": {
+    "start": "node server.js",
+    "dev": "cd backend && nodemon server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
